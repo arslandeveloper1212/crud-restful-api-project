@@ -67,6 +67,17 @@ app.get("/user/:id", async (req,res)=>{
     }
  })
 
+ //delete data from user
+ app.delete("/user/:id", async (req,res)=>{
+    try{
+        const id = req.params.id;
+       const DeleteUser = await User.findByIdAndDelete(id);
+       res.status(200).send(DeleteUser)
+    }catch(e){
+        res.status(404).send(e);
+    }
+ })
+
 
 
 app.listen(port, ()=>{
